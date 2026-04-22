@@ -2,25 +2,25 @@
 
 English | [中文](README_CN.md)
 
-An OMX-only Codex surface pack that pushes analysis-style answers closer to an Opus-like presentation style.
+An [OMX](https://github.com/Yeachan-Heo/oh-my-codex)-only Codex surface pack that pushes analysis-style answers closer to an Opus-like presentation style.
 
 This package does three things:
 
 1. Installs a small baseline block into `~/.codex/AGENTS.md`
 2. Installs a stronger analysis-only prompt surface into `~/.codex/prompts/opus-surface.md`
-3. Wraps the existing OMX native hook so `UserPromptSubmit` and `Stop` keep OMX behavior and also apply the Opus-style surface
+3. Wraps the existing [OMX](https://github.com/Yeachan-Heo/oh-my-codex) native hook so `UserPromptSubmit` and `Stop` keep OMX behavior and also apply the Opus-style surface
 
 ## Scope
 
-This repo is intentionally **OMX-only**.
+This repo is intentionally **[OMX-only](https://github.com/Yeachan-Heo/oh-my-codex)**.
 
 It assumes the user already has:
 
 - Codex Desktop or Codex CLI
-- `oh-my-codex` installed
-- a working OMX native hook chain
+- [`oh-my-codex`](https://github.com/Yeachan-Heo/oh-my-codex) installed
+- a working [OMX](https://github.com/Yeachan-Heo/oh-my-codex) native hook chain
 
-This repo does **not** try to support bare Codex without OMX.
+This repo does **not** try to support bare Codex without [OMX](https://github.com/Yeachan-Heo/oh-my-codex).
 
 ## What it changes
 
@@ -40,7 +40,7 @@ bash install.sh
 
 The installer:
 
-- detects the existing OMX native hook path from your current `~/.codex/hooks.json`
+- detects the existing [OMX](https://github.com/Yeachan-Heo/oh-my-codex) native hook path from your current `~/.codex/hooks.json`
 - appends a baseline block into `~/.codex/AGENTS.md`
 - installs the prompt and wrapper hook into `~/.codex`
 - rewires `UserPromptSubmit` and `Stop` to the wrapper hook
@@ -59,7 +59,7 @@ This removes:
 - the installed prompt/hook/example files
 - the wrapper hook wiring from `~/.codex/hooks.json`
 
-The installer restores `UserPromptSubmit` and `Stop` to the original OMX native hook path it detected during install.
+The installer restores `UserPromptSubmit` and `Stop` to the original [OMX](https://github.com/Yeachan-Heo/oh-my-codex) native hook path it detected during install.
 
 ## Layout
 
