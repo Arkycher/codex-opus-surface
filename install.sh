@@ -70,7 +70,6 @@ install_files() {
   cp "$PROMPT_SRC" "$INSTALLED_PROMPT"
   cp "$HOOK_SRC" "$INSTALLED_HOOK"
   cp "$CASES_SRC" "$INSTALLED_CASES"
-  touch "$REGRESSION_LOG"
 }
 
 write_config() {
@@ -109,7 +108,6 @@ def ensure_wrapper(event, status_message=None, timeout=None):
     hooks[event] = [{"hooks": [wrapper]}]
 
 ensure_wrapper("UserPromptSubmit", "Applying OMX prompt routing + opus surface")
-ensure_wrapper("Stop", timeout=30)
 
 with open(hooks_path, "w") as f:
     json.dump(data, f, indent=2)
@@ -153,7 +151,6 @@ with open(hooks_path) as f:
 hooks = data.setdefault("hooks", {})
 native_cmd = f'node "{native_hook}"'
 hooks["UserPromptSubmit"] = [{"hooks": [{"type": "command", "command": native_cmd, "statusMessage": "Applying OMX prompt routing"}]}]
-hooks["Stop"] = [{"hooks": [{"type": "command", "command": native_cmd, "timeout": 30}]}]
 with open(hooks_path, "w") as f:
     json.dump(data, f, indent=2)
     f.write("\n")
@@ -190,6 +187,7 @@ main() {
 
   echo "Installed codex-opus-surface into $CODEX_HOME"
   echo "Detected OMX native hook: $native_hook_path"
+  echo "Installed in lightweight mode: UserPromptSubmit is wrapped, Stop remains on native OMX."
   echo "Start a new Codex session to apply the new surface."
 }
 

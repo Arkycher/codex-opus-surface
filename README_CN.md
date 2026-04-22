@@ -8,7 +8,7 @@
 
 1. 往 `~/.codex/AGENTS.md` 注入一小段常驻 baseline
 2. 往 `~/.codex/prompts/opus-surface.md` 安装一层更强的分析类风格面
-3. 包装现有的 [OMX](https://github.com/Yeachan-Heo/oh-my-codex) native hook，让 `UserPromptSubmit` 和 `Stop` 在保留 OMX 行为的同时叠加 Opus 风格
+3. 只在 `UserPromptSubmit` 上包装现有的 [OMX](https://github.com/Yeachan-Heo/oh-my-codex) native hook，让分析类 prompt 叠加 Opus 风格，而不改动 OMX 其他生命周期阶段
 
 ## 适用范围
 
@@ -43,7 +43,7 @@ bash install.sh
 - 从你当前的 `~/.codex/hooks.json` 里探测现有 [OMX](https://github.com/Yeachan-Heo/oh-my-codex) native hook 路径
 - 把 baseline 追加进 `~/.codex/AGENTS.md`
 - 把 prompt 和 wrapper hook 安装进 `~/.codex`
-- 把 `UserPromptSubmit` 和 `Stop` 改接到 wrapper hook
+- 只把 `UserPromptSubmit` 改接到 wrapper hook
 
 安装后需要 **重开一个 Codex 会话** 才会生效。
 
@@ -59,7 +59,7 @@ bash install.sh --uninstall
 - 已安装的 prompt / hook / example 文件
 - `~/.codex/hooks.json` 里 wrapper hook 的接线
 
-同时会把 `UserPromptSubmit` 和 `Stop` 恢复到安装前探测到的 [OMX](https://github.com/Yeachan-Heo/oh-my-codex) native hook 路径。
+同时会把 `UserPromptSubmit` 恢复到安装前探测到的 [OMX](https://github.com/Yeachan-Heo/oh-my-codex) native hook 路径。`Stop` 在安装和卸载后都保持原生 OMX 路径。
 
 ## 仓库结构
 
@@ -92,3 +92,4 @@ install.sh
 - 当前 trigger heuristic 是有意保持简单的关键词启发式。
 - 这个包优化的是分析 / review / postmortem 风格，不是通用闲聊风格。
 - 它更接近 Opus 4.7，而不是 Opus 4.6。
+- 当前只发布轻量模式：只装饰 `UserPromptSubmit`，不改 `Stop`。
