@@ -1,5 +1,7 @@
 # codex-opus-surface
 
+English | [中文](README_CN.md)
+
 An OMX-only Codex surface pack that pushes analysis-style answers closer to an Opus-like presentation style.
 
 This package does three things:
